@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis
+    volumes: 
+      - myvolume:/data
+
+networks:
+  mynetwork:
+    driver: bridge
+volumes:
+  myvolume:

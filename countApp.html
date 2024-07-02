@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome Count</title>
+</head>
+<body>
+    <h1 id="welcome">Welcome count 1</h1>
+    <button style="color:blue" onclick="incrementCount()">Refresh</button>
+
+    <script>
+        function incrementCount() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/increment', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    document.getElementById('welcome').innerText = "Welcome count " + xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
